@@ -1,5 +1,5 @@
 import {catchasynErrors} from '../middlewares/catchasyncErrors.js';
-import {ErrorHandler} from '../middlewares/Error.js';
+import { ErrorHandler } from '../middlewares/newerror.js';
 import {User} from '../models/user.model.js';
 import { sendToken } from '../utils/jwtTokens.js';
 
@@ -54,11 +54,12 @@ export const logout =  catchasynErrors(async(req, res, next) =>{
     res
      .status(200)
      .cookie("token", "", {
-        expires: Date.now(),
+        expires: new Date(Date.now()) ,
         httpOnly: true
      })
      .json({
-
+        success: true,
+        message: "User logged out successfully!!"
      })
 })
 export default signup;
