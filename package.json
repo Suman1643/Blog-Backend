@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Backend code for Blog_platform",
   "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "type":"module",
   "scripts": {
     "start": "node server.js",
