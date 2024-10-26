@@ -39,15 +39,20 @@ export const login = catchasynErrors(async(req, res, next) =>{
 
     const isPasswordMatched= await user.comparePassword(password);
 
+
     if(!isPasswordMatched){
         return next(new ErrorHandler("Invalid email or password!!", 400));
     };
 
     if(user.role !== role){
         return next(new ErrorHandler(`User provided role (${role}) not Found!!`, 400));
-    }
+    };
+
 
     sendToken(user, 200, "User LoggedIn successfully!!", res);
+
+    const token = jwt.sign({ payload }, secretKey, { expiresIn: '1h' });
+
 });
 
 export const logout =  catchasynErrors(async(req, res, next) =>{
@@ -61,5 +66,13 @@ export const logout =  catchasynErrors(async(req, res, next) =>{
         success: true,
         message: "User logged out successfully!!"
      })
+})
+
+export const getMyProfile = catchasynErrors((req, res, next)=>{
+    const user = req.user;
+    res.status(200).json({
+        success: true,
+        user
+    })
 })
 export default signup;
