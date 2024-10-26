@@ -51,8 +51,6 @@ export const login = catchasynErrors(async(req, res, next) =>{
 
     sendToken(user, 200, "User LoggedIn successfully!!", res);
 
-    const token = jwt.sign({ payload }, secretKey, { expiresIn: '1h' });
-
 });
 
 export const logout =  catchasynErrors(async(req, res, next) =>{
