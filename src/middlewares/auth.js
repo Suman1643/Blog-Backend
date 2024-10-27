@@ -24,7 +24,7 @@ export const isAuthorizeed = (...roles) => {
     return (req, res, next) => {
         if(!roles.includes(req.res.next)){
             return next(
-                new errorHandler(
+                new ErrorHandler(
                     `User with this role (${req.res.next}) not allowed to access this resource`
                 )       
             )

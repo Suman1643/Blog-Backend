@@ -72,5 +72,13 @@ export const getMyProfile = catchasynErrors((req, res, next)=>{
         success: true,
         user
     })
+});
+
+export const getAllAuthors = catchasynErrors(async(req, res, next)=>{
+    const authors = await User.find({role: 'Author'});
+    res.status(200).json({
+        success: true,
+        authors
+    })
 })
 export default signup;
