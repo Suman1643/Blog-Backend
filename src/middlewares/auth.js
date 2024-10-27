@@ -6,7 +6,8 @@ import { ErrorHandler } from './newerror.js';
 // AUTHENTICATION
 
 export const isAuntheticated = catchasynErrors(async(req, res, next) => {
-    const token = req.headers.authorization.split(" ")[1];
+    // const token = req.headers.authorization.split(" ")[1];
+    const {token} = req.cookies
     console.log(token);
     if(!token){
         return next(new ErrorHandler("User is not authenticated!!", 400));
