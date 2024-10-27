@@ -20,7 +20,7 @@ export const isAuntheticated = catchasynErrors(async(req, res, next) => {
 
 // AUTHORIZATION
 
-export const isAuthorizeed = (...roles) => {
+export const isAuthorized = (...roles) => {
     return (req, res, next) => {
         if(!roles.includes(req.res.next)){
             return next(

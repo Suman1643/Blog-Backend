@@ -4,6 +4,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dbConnection from './src/db/dbConnection.js';
 import userRouter from './src/routes/userRouter.js';
+import blogRouter from './src/routes/blogRouter.js';
 import errorMiddleware from './src/middlewares/newerror.js';
 import fileUpload from 'express-fileupload';
 import cloudinary from 'cloudinary';
@@ -33,7 +34,8 @@ app.use(fileUpload({
  
 }));
 
-app.use("/api/v1", userRouter);
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/blog", blogRouter);
 
 app.use(errorMiddleware);
 
