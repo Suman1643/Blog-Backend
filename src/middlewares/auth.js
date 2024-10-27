@@ -21,11 +21,11 @@ export const isAuntheticated = catchasynErrors(async(req, res, next) => {
 // AUTHORIZATION
 
 export const isAuthorized = (...roles) => {
-    return (roles) => {
+    return (req, res, next) => {
         if(!roles.includes(req.user.role)){
             return next(
                 new ErrorHandler(
-                    `User with this role (${req.res.next}) not allowed to access this resource`, 400
+                    `User with this role (${req.user.role}) not allowed to access this resource`, 400
                 )       
             )
         }
