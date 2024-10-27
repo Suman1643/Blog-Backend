@@ -1,7 +1,8 @@
 import  { catchasynErrors } from '../middlewares/catchasyncErrors.js';
 import { User } from '../models/user.model.js';
 import jwt from 'jsonwebtoken'
-import { ErrorHandler } from './newerror.js';
+import { ErrorHandler } from '../middlewares/newerror.js';
+
 
 // AUTHENTICATION
 
@@ -21,6 +22,7 @@ export const isAuntheticated = catchasynErrors(async(req, res, next) => {
 // AUTHORIZATION
 
 export const isAuthorized = (...roles) => {
+    console.log("Inside Authorization")
     return (req, res, next) => {
         if(!roles.includes(req.user.role)){
             return next(

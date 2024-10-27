@@ -1,5 +1,5 @@
 import {catchasynErrors} from '../middlewares/catchasyncErrors.js';
-import ErrorHandler from '../middlewares/newerror.js';
+import {ErrorHandler} from '../middlewares/newerror.js';
 import cloudinary from 'cloudinary';
 import {Blog} from '../models/blogSchema.model.js';
 
@@ -11,7 +11,7 @@ export const blogPost = catchasynErrors(async(req, res, next)=> {
     if(!mainImage){
         return next(new ErrorHandler("Main Image Is Mandatory!!", 400));
     };
-    const allowedformats= ['img/png', 'img/jpeg', 'img/webp'];
+    const allowedformats= ['image/png', 'image/jpeg', 'image/webp'];
     if(!allowedformats.includes(mainImage.mimetype) ||
      (paraOneImage && !allowedformats.includes(paraOneImage.mimetype)) ||
      (paraTwoImage && !allowedformats.includes(paraTwoImage.mimetype)) ||
@@ -31,7 +31,7 @@ export const blogPost = catchasynErrors(async(req, res, next)=> {
 
     const createdBy = req.user._id;
     const authorName = req.body.name;
-    const authorAvatar = req.body.avatar.url;
+    const authorAvatar = req.body.avatar.url || "";
     
     if(!title || !intro || !category){
         return next(new ErrorHandler("title, intro and category are required field!!", 400));
@@ -49,7 +49,7 @@ export const blogPost = catchasynErrors(async(req, res, next)=> {
        (paraOneImageRes && (!paraOneImageRes || paraOneImageRes.error)) ||
        (paraTwoImageRes && (!paraTwoImageRes || paraTwoImageRes.error)) ||
        (paraThreeImageRes && (!paraThreeImageRes || paraThreeImageRes.error))){
-          return next(new  ErrorHandler("Error occured during uploading the one or more images"));
+          return next(new  ErrorHandler("Error occured during uploading the one or more images", 400));
        };
 
        const blogData = {
