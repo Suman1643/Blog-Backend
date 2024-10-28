@@ -91,7 +91,8 @@ const blogSchema = mongoose.Schema({
     },
     publish: {
         type: Boolean,
-        default: false
+        default: false,
+        required: true
     }
 });
 

@@ -100,7 +100,7 @@ export const deleteBlog = catchasynErrors(async (req, res, next) => {
     if(!blog) {
         return next(new ErrorHandler("Blog not found!!", 404));
     }
-    await blog.deletOne();
+    await blog.deleteOne();
     res.status(200).json({
         success: true,
         message: "Blog deleted successfully!!"
