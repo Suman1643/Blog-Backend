@@ -88,6 +88,10 @@ const blogSchema = mongoose.Schema({
     },
     authorAvatar: {
         type: String
+    },
+    publish: {
+        type: Boolean,
+        default: false
     }
 });
 

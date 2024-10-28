@@ -10,30 +10,27 @@ import fileUpload from 'express-fileupload';
 import cloudinary from 'cloudinary';
 // import blogRouter from './src/routes/blogRouter.js';
 
-
-const app = express();
 dotenv.config();
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use(cors({
     origin: 'http://localhost:5173',
     methods: ['GET', 'PUT', 'DELETE', 'POST'],
     credentials: true,
   }));
-
-app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 dbConnection();
-app.get("/", (req, res) => {
-    res.send("Hello from the server!");
-});
 
 app.use(fileUpload({
     useTempFiles: true,
     tempFileDir: '/tmp/'  // Location for storing the uploaded files.
  
 }));
-
+app.get("/", (req, res) => {
+    res.send("Hello from the server!");
+});
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/blog", blogRouter);
 

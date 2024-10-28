@@ -22,7 +22,6 @@ export const isAuntheticated = catchasynErrors(async(req, res, next) => {
 // AUTHORIZATION
 
 export const isAuthorized = (...roles) => {
-    console.log("Inside Authorization")
     return (req, res, next) => {
         if(!roles.includes(req.user.role)){
             return next(
