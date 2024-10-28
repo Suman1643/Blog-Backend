@@ -67,23 +67,23 @@ export const blogPost = catchasynErrors(async(req, res, next)=> {
            authorName,
            authorAvatar,
            mainImage: {
-            publicId: mainImageRes.publicId,
+            publicId: mainImageRes.public_id,
             url: mainImageRes.secure_url    
            }   
        };
        if(paraOneImageRes){
         blogData.paraOneImage={
-            publicId: paraOneImageRes.publicId,
+            publicId: paraOneImageRes.public_id,
             url: paraOneImageRes.secure_url} 
        }
        if(paraTwoImageRes){
         blogData.paraTwoImage={
-            publicId: paraTwoImageRes.publicId,
+            publicId: paraTwoImageRes.public_id,
             url: paraTwoImageRes.secure_url} 
        }
        if(paraThreeImageRes){
         blogData.paraThreeImage={
-            publicId: paraThreeImageRes.publicId,
+            publicId: paraThreeImageRes.public_id,
             url: paraThreeImageRes.secure_url} 
        }
        const blog = await Blog.create(blogData);
@@ -165,41 +165,41 @@ export const updateBlog = catchasynErrors(async (req, res, next) => {
         }
     }
     if(req.file && mainImage){
-        const blogMainImage = blog.mainImage.publicId;
+        const blogMainImage = blog.mainImage.public_id;
         await cloudinary.uploader.destroy(blogMainImage);
         const newblogMainImage = await cloudinary.uploader.upload(mainImage.tempFilePath)
         newBlogData.mainImage = {
-            publicId: newblogMainImage.publicId,
+            publicId: newblogMainImage.public_id,
             url: newblogMainImage.secure_url
         }
     }
     if(req.file && paraOneImage){
-        if(paraOneImage){const blogparaOneImage = blog.paraOneImage.publicId;
+        if(paraOneImage){const blogparaOneImage = blog.paraOneImage.public_id;
         await cloudinary.uploader.destroy(blogparaOneImage);
         }
      const newblogparaOneImage = await cloudinary.uploader.upload(paraOneImage.tempFilePath)
         newBlogData.paraOneImage = {
-            publicId: newblogparaOneImage.publicId,
+            publicId: newblogparaOneImage.public_id,
             url: newblogparaOneImage.secure_url
         }   
     }
     if(req.file && paraTwoImage){
-        if(paraTwoImage){const blogparaTwoImage = blog.paraTwoImage.publicId;
+        if(paraTwoImage){const blogparaTwoImage = blog.paraTwoImage.public_id;
         await cloudinary.uploader.destroy(blogparaTwoImage);
         }
      const newblogparaTwoImage = await cloudinary.uploader.upload(paraTwoImage.tempFilePath)
         newBlogData.paraTwoImage = {
-            publicId: newblogparaTwoImage.publicId,
+            publicId: newblogparaTwoImage.public_id,
             url: newblogparaTwoImage.secure_url
         }   
     }
     if(req.file && paraThreeImage){
-        if(paraThreeImage){const blogparaThreeImage = blog.paraThreeImage.publicId;
+        if(paraThreeImage){const blogparaThreeImage = blog.paraThreeImage.public_id;
         await cloudinary.uploader.destroy(blogparaThreeImage);
         }
      const newblogparaThreeImage = await cloudinary.uploader.upload(paraThreeImage.tempFilePath)
         newBlogData.paraThreeImage = {
-            publicId: newblogparaThreeImage.publicId,
+            publicId: newblogparaThreeImage.public_id,
             url: newblogparaThreeImage.secure_url
         }   
     }
