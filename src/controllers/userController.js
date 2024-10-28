@@ -44,7 +44,7 @@ const signup = catchasynErrors(async(req, res, next) =>{
         education,
         role,
         avatar:{
-            publicId: cloudinaryResponse.public_id,
+            public_id: cloudinaryResponse.public_id,
             url: cloudinaryResponse.secure_url
         }
     });
