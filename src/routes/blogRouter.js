@@ -5,7 +5,7 @@ import CustomError from '../middlewares/customerror.js';
 
 const router = express.Router();
 
- router.post('/post', isAuntheticated, isAuthorized("Author"), blogPost);
+router.post('/post', isAuntheticated, isAuthorized("Author"), blogPost);
 // router.post('/post', blogPost);
 
 router.delete('/delete/:id', isAuntheticated, isAuthorized("Author"), deleteBlog);
