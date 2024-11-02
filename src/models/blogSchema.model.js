@@ -37,7 +37,7 @@ const blogSchema = mongoose.Schema({
     },
     paraOneTitle: {
         type: String,
-        minlength: [50, "Content must have more than 50 charecter"]
+        minlength: [10, "Content must have more than 10 charecter"]
     }, 
     paraTwoImage: {
         publicId:{
@@ -54,7 +54,7 @@ const blogSchema = mongoose.Schema({
     },
     paraTwoTitle: {
         type: String,
-        minlength: [50, "Content must have more than 50 charecter"]
+        minlength: [10, "Content must have more than 10 charecter"]
     },
     paraThreeImage: {
         publicId:{
@@ -71,7 +71,7 @@ const blogSchema = mongoose.Schema({
     },
     paraThreeTitle: {
         type: String,
-        minlength: [50, "Content must have more than 50 charecter"]
+        minlength: [10, "Content must have more than 10 charecter"]
     } ,
     category: {
         type: String,
