@@ -5,16 +5,16 @@ import CustomError from '../middlewares/customerror.js';
 
 const router = express.Router();
 
-// router.post('/post', isAuthorized("Author"), blogPost);
-router.post('/post', blogPost);
+ router.post('/post', isAuntheticated, isAuthorized("Author"), blogPost);
+// router.post('/post', blogPost);
 
-// router.delete('/delete/:id', isAuntheticated, isAuthorized("Author"), deleteBlog);
-router.delete('/delete/:id', isAuthorized("Author"), deleteBlog);
+router.delete('/delete/:id', isAuntheticated, isAuthorized("Author"), deleteBlog);
+// router.delete('/delete/:id', isAuthorized("Author"), deleteBlog);
 
 router.get('/all', getallBlogs);
 router.get('/singleblog/:id', getSingleBlog);
-// router.get('/myblog', isAuntheticated, isAuthorized("Author"), getMyBlog);
-router.get('/myblog', isAuthorized("Author"), getMyBlog);
+router.get('/myblog', isAuntheticated, isAuthorized("Author"), getMyBlog);
+// router.get('/myblog', isAuthorized("Author"), getMyBlog);
 
 
 

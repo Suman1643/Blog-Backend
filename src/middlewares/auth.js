@@ -7,9 +7,10 @@ import { ErrorHandler } from '../middlewares/newerror.js';
 // AUTHENTICATION
 
 export const isAuntheticated = catchasynErrors(async(req, res, next) => {
-    // const token = req.headers.authorization.split(" ")[1];
-    const {token} = req.cookies
-    console.log(token);
+    // console.log(req.headers)
+    const token = req.headers.authorization.split(" ")[1];
+    // const {token} = req.cookies
+    // console.log(token);
     if(!token){
         return next(new ErrorHandler("User is not authenticated!!", 400));
     }
@@ -23,6 +24,9 @@ export const isAuntheticated = catchasynErrors(async(req, res, next) => {
 
 export const isAuthorized = (...roles) => {
     return (req, res, next) => {
+        if (!req.user) {
+            return next(new ErrorHandler('User not authenticated', 401));
+        }
         if(!roles.includes(req.user.role)){
             return next(
                 new ErrorHandler(
