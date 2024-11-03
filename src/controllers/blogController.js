@@ -202,7 +202,16 @@ export const updateBlog = catchasynErrors(async (req, res, next) => {
             publicId: newblogparaThreeImage.public_id,
             url: newblogparaThreeImage.secure_url
         }   
-    }
-
+    } 
+    blog = await Blog.findByIdAndUpdate(id, newBlogData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    });
+    res.status(200).json({
+        success: true,
+        message: "Blog updated successfully!!",
+        blog
+    });
 
 })
