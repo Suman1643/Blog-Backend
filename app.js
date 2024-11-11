@@ -24,7 +24,7 @@ app.use(cors({
   }));
 
 app.options('*', cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://blog-frontend-xi-beige.vercel.app',
     methods: ['GET', 'PUT', 'DELETE', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
