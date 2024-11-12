@@ -48,7 +48,6 @@ const blogSchema = mongoose.Schema({
     },
     paraTwoDescription: {
         type: String,
-        required: true,
         minlength: [50, "Content must have more than 50 character"]
     },
     paraTwoTitle: {
@@ -64,7 +63,6 @@ const blogSchema = mongoose.Schema({
     },
     paraThreeDescription: {
         type: String,
-        required: true,
         minlength: [50, "Content must have more than 50 character"]
     },
     paraThreeTitle: {
